@@ -1,0 +1,1 @@
+This mini-project creates a facade `math.js` module that imports functions from the `numbers1.js`, `numbers2.js` and `numbers3.js` modules and reexports them as `pow`, `sum`, `sub`, `sqrt` and `multi`. The `cube` function is exported as default.
