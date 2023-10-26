@@ -1,3 +1,5 @@
+# Pascal's Triangle Line Generator
+
 ## Overview
 Pascal's Triangle is an infinite table of binomial coefficients arranged in a triangular shape. At the apex and along the sides of this triangle are ones. Each number in the triangle is the sum of the two numbers above it. The rows of the triangle are symmetric with respect to the vertical axis.
 
