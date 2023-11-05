@@ -1,20 +1,11 @@
-# Pascal's Triangle Line Generator
+# Longest Substring Without Duplicates
 
 ## Overview
 
-Pascal's Triangle is an infinite table of binomial coefficients arranged in a triangular shape. At the apex and along the sides of this triangle are ones. Each number in the triangle is the sum of the two numbers above it. The rows of the triangle are symmetric with respect to the vertical axis.
-
-```text
-0:      1
-1:     1 1
-2:    1 2 1
-3:   1 3 3 1
-4:  1 4 6 4 1
-```
-
-This mini-project implements a default function that returns the specified row of Pascal's triangle as an array.
+This mini-project implements a default function that returns the length of the longest substring without duplicating characters in a given string. For example, `qweqrty` has the following substrings with non-repeating characters: `qwe`, `weqrty`. The last one will be the longest.
 
 ```js
-generate(1); // returns [1, 1]
-generate(4); // returns [1, 4, 6, 4, 1]
+getLongestLength('abcdeef'); // 5
+getLongestLength('jabjcdel'); // 7
+getLongestLength(''); // 0
 ```
