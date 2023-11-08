@@ -1,11 +1,22 @@
-# Longest Substring Without Duplicates
+# Increasing Consecutive Ranges 
 
 ## Overview
 
-This mini-project implements a default function that returns the length of the longest substring without duplicating characters in a given string. For example, `qweqrty` has the following substrings with non-repeating characters: `qwe`, `weqrty`. The last one will be the longest.
+This mini-project implements a default function that finds increasing consecutive ranges in an array and returns an array with the starts and ends of such ranges. 
 
 ```js
-getLongestLength('abcdeef'); // 5
-getLongestLength('jabjcdel'); // 7
-getLongestLength(''); // 0
+summaryRanges([]);
+// []
+
+summaryRanges([1]);
+// []
+
+summaryRanges([1, 2, 3]);
+// ['1->3']
+
+summaryRanges([0, 1, 2, 4, 5, 7]);
+// ['0->2', '4->5']
+
+summaryRanges([110, 111, 112, 111, -5, -4, -2, -3, -4, -5]);
+// ['110->112', '-5->-4']
 ```

@@ -3,163 +3,160 @@
 
 // BEGIN (write your solution here)
 
-/*
-compare characters
-as long as they do not match, continue
-as soon as a duplicate is found - register the found substring
-get back to the char after the first occurrence of the duplicated string
-iterate again
-* */
+const transposeMatrix = (matrix) => {
+  const reversedIndices = Array.from(matrix[0]?.keys());
 
-// const getPreviousOccurrence = (str, index, char) => {
-//   for (let i = index - 1; i >= 0; i -= 1) {
-//     const currentCharacter = str[i];
-//
-//     if (currentCharacter === char) return i;
-//   }
-//
-//   return null;
-// };
-//
-// const getLongestLength = (str) => {
-//   let longestLength = 0;
-//   let currentLongestString = '';
-//   let currentLongestLength = 0;
-//
-//   for (let i = 0; i < str.length; i += 1) {
-//     const currentCharacter = str[i];
-//
-//     if (!currentLongestString.includes(currentCharacter)) {
-//       currentLongestString += currentCharacter;
-//       currentLongestLength = currentLongestString.length;
-//
-//       const isLast = i === str.length - 1;
-//
-//       if (isLast) {
-//         longestLength = Math.max(longestLength, currentLongestLength);
-//       }
-//     } else {
-//       i = getPreviousOccurrence(str, i, currentCharacter);
-//
-//       longestLength = Math.max(longestLength, currentLongestLength);
-//
-//       currentLongestString = '';
-//       currentLongestLength = 0;
-//     }
-//   }
-//
-//   return longestLength;
-// };
-
-// const getLongestLength = (str) => {
-//   let map = {};
-//   let windowStart = 0;
-//   let windowEnd = 0;
-//   let longestLength = 0;
-//
-//   for (let i = 0; i < str.length; i += 1) {
-//     const currentCharacter = str[i];
-//
-//     if (map[currentCharacter] === undefined) {
-//       map[currentCharacter] = i;
-//       windowEnd = i + 1;
-//     } else {
-//       longestLength = Math.max(longestLength, windowEnd - windowStart);
-//       i = map[currentCharacter];
-//       windowStart = i + 1;
-//       windowEnd = windowStart;
-//       map = {};
-//     }
-//   }
-//
-//   return Math.max(longestLength, windowEnd - windowStart);
-// };
-
-// const getLongestLength = (str) => {
-//   let map = {};
-//   let windowStart = 0;
-//   let longestLength = 0;
-//
-//   for (let i = 0; i < str.length; i += 1) {
-//     const currentCharacter = str[i];
-//     if (map[currentCharacter] !== undefined && map[currentCharacter] >= windowStart) {
-//       windowStart = map[currentCharacter] + 1;
-//     }
-//     map[currentCharacter] = i;
-//     longestLength = Math.max(longestLength, i - windowStart + 1);
-//   }
-//
-//   return longestLength;
-// };
-
-// const getLongestLength = (str) => {
-//   let sequence = [];
-//   let maxLength = 0;
-//
-//   // Проходимся по всем символам переданной строки.
-//   for (const char of str) {
-//     // Ищем в сформированной последовательности
-//     // позицию первого вхождения текущего символа.
-//     const index = sequence.indexOf(char);
-//     // Добавляем в последовательность текущий символ.
-//     sequence.push(char);
-//
-//
-//     if (index !== -1) {
-//       // Если символ в последовательности был найден,
-//       // значит в неё был добавлен повторяющийся символ.
-//       // Отсекаем все символы включая найденный.
-//       sequence = sequence.slice(index + 1);
-//     }
-//     // Получаем длину последовательности.
-//     const sequenceLength = sequence.length;
-//     if (sequenceLength > maxLength) {
-//       // Если длина последовательности больше чем максимальная,
-//       // устанавливаем новую максимальную длину.
-//       maxLength = sequenceLength;
-//     }
-//   }
-//
-//   return maxLength;
-// };
-
-const getLongestLength = (str) => {
-  let longestLength = 0;
-  let currentLongestString = '';
-
-  for (let i = 0; i < str.length; i += 1) {
-    const currentCharacter = str[i];
-
-    const existingIndex = currentLongestString.indexOf(currentCharacter);
-
-    currentLongestString += currentCharacter;
-
-    if (existingIndex !== -1) {
-      currentLongestString = currentLongestString.slice(existingIndex + 1);
-    }
-
-    const currentLongestLength = currentLongestString.length;
-
-    longestLength = Math.max(longestLength, currentLongestLength);
-  }
-
-  return longestLength;
+  return reversedIndices.map((column) => matrix.map((row) => row[column]));
 };
 
-// console.log(getLongestLength('jabjcdel')); //.toBe(7);
-// console.log(getLongestLength('abcddef')); //.toBe(4);
-// console.log(getLongestLength('abbccddeffg')); //.toBe(3);
-// console.log(getLongestLength('abcbcc')); //.toBe(3);
-//
-// console.log(getLongestLength('abcd')); //.toBe(4);
-// console.log(getLongestLength('1234561qweqwer')); //.toBe(9);
-// console.log(getLongestLength('1234561qweqwerqer')); //.toBe(9);
-// console.log(getLongestLength('')); //.toBe(0);
-// console.log(getLongestLength('jabjcdeljrshmgdhj')); //.toBe(10);
-//
-// console.log('result', getLongestLength('abcdeef')); // 5
-// console.log(getLongestLength('jabjcdel')); // 7
-// console.log(getLongestLength('')); // 0
-export default getLongestLength;
+const multiplyRows = (row1, row2) => {
+  let multipliedRow = 0;
 
+  for (let i = 0; i < row1.length; i += 1) {
+    multipliedRow += row1[i] * row2[i];
+  }
+
+  return multipliedRow;
+};
+
+// const multiplyMatrices = (matrix1, matrix2) => {
+//   const rotatedMatrix2 = rotateMatrix(matrix2);
+//
+//   const multipliedMatrix = Array.from({length: matrix1.length}, () => []);
+//
+//   const rowCount1 = rotatedMatrix2.length || 0;
+//   const rowCount2 = matrix1.length || 0;
+//
+//   for (let rowIndex2 = rowCount1 - 1; rowIndex2 >= 0; rowIndex2 -= 1) {
+//     const currentRow2 = rotatedMatrix2[rowIndex2];
+//
+//     for (let rowIndex1 = 0; rowIndex1 < rowCount2; rowIndex1 += 1) {
+//       const currentRow1 = matrix1[rowIndex1];
+//       const product = multiplyRows(currentRow2, currentRow1);
+//
+//       multipliedMatrix[rowIndex1].push(product);
+//     }
+//   }
+//
+//   return multipliedMatrix;
+// };
+//
+
+const getColumn = (matrix, columnIndex) => {
+  const column = [];
+
+  for (let i = 0; i < matrix.length; i += 1) {
+    const currentRow = matrix[i];
+    column.push(currentRow[columnIndex]);
+  }
+
+  return column;
+};
+
+const matrixA = [
+  [2, 3],
+  [4, 5],
+];
+
+const matrixB = [
+  [6, 7],
+  [8, 9],
+];
+
+const transposedB = [
+  [6, 8],
+  [7, 9],
+];
+
+const result = [[36, 41], []];
+
+const multiplyMatrices = (matrix1, matrix2) => {
+  const multipliedMatrix = Array.from({ length: matrix1.length }, () => []);
+  const transposedMatrix2 = transposeMatrix(matrix2);
+
+  for (let rowIndex1 = 0; rowIndex1 < matrix1.length; rowIndex1 += 1) {
+    const currentRow1 = matrix1[rowIndex1];
+
+    for (
+      let rowIndex2 = 0;
+      rowIndex2 < transposedMatrix2.length;
+      rowIndex2 += 1
+    ) {
+      const currentRow2 = transposedMatrix2[rowIndex2];
+      const multipliedRows = multiplyRows(currentRow1, currentRow2);
+      multipliedMatrix[rowIndex1].push(multipliedRows);
+    }
+  }
+
+  return multipliedMatrix;
+};
+
+multiplyMatrices(matrixA, matrixB);
+
+// export default multiplyMatrices;
+// END
+
+// BEGIN
+export default (matrixA, matrixB) => {
+  const rowsCountA = matrixA.length;
+  const rowsCountB = matrixB.length;
+  const [firstRowB] = matrixB;
+  const [firstRowA] = matrixA
+  const columnsCountB = firstRowB.length;
+  const columnsCountA = firstRowA.length;
+  const matrixC = [];
+
+  for (let row = 0; row < rowsCountA; row += 1) {
+    matrixC[row] = [];
+    for (let column = 0; column < columnsCountB; column += 1) {
+      let sum = 0;
+      for (let mover = 0; mover < columnsCountA; mover += 1) {
+        sum += matrixA[row][mover] * matrixB[mover][column];
+      }
+      matrixC[row][column] = sum;
+    }
+  }
+
+  return matrixC;
+};
+
+
+const multiplyMatrices = (matrixA, matrixB) => {
+  const matrixC = [];
+  const rowsACount = matrixA.length;
+  const columnsACount = matrixA[0].length;
+  const columnsBCount = matrixB[0].length;
+
+  for (let i = 0; i < rowsACount; i += 1) {
+    matrixC[i] = [];
+    const currentRow = matrixC[i];
+
+    for (let j = 0; j < columnsBCount; j += 1) {
+      let sum = 0;
+
+      for (let k = 0; k < columnsACount; k += 1) {
+        const elementA = matrixA[i][k];
+        const elementB = matrixB[k][j];
+
+        sum += elementA * elementB;
+      }
+
+      currentRow.push(sum);
+    }
+  }
+
+  return matrixC;
+};
+
+const m1 = [
+  [2, 3],
+  [4, 5],
+];
+
+const m2 = [
+  [6, 7],
+  [8, 9],
+];
+
+console.log(multiplyMatrices(m1, m2));
 // END

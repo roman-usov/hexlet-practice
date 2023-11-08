@@ -1,5 +1,5 @@
 {
-  "name": "polish-notation",
+  "name": "snail",
   "version": "1.0.0",
   "description": "",
   "type": "module",
@@ -8,7 +8,9 @@
     "lint": "eslint *.js",
     "pretty": "npx prettier --write ."
   },
-  "dependencies": {},
+  "dependencies": {
+    "lodash": "*"
+  },
   "devDependencies": {
     "eslint": "^8.50.0",
     "eslint-config-airbnb": "^19.0.4",
