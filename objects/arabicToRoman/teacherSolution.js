@@ -14,8 +14,9 @@ const numerals = {
   I: 1,
 };
 
-const sortedNumerals = Object.entries(numerals)
-  .sort(([, arabic1], [, arabic2]) => Math.sign(arabic2 - arabic1));
+const sortedNumerals = Object.entries(numerals).sort(
+  ([, arabic1], [, arabic2]) => Math.sign(arabic2 - arabic1),
+);
 
 export const toRoman = (number) => {
   let digit = number;
